@@ -16,7 +16,9 @@ task :fork => :build_config do
       f.puts line
     end
   end
+  system "rm -rf mruby"
   system "git init"
+  system "git submodule add https://github.com/mruby/mruby.git mruby"
   system "git add ."
   system "git commit -am 'Initial commit'"
 end
