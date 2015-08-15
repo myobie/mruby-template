@@ -29,6 +29,7 @@ task :build_config => "build_config.rb"
 file MRUBY => "build_config.rb" do
   Dir.chdir "./mruby"
   ENV["MRUBY_CONFIG"] = "../build_config.rb"
+  system "./minirake clean"
   system "./minirake"
 end
 
