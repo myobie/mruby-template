@@ -16,15 +16,15 @@ $ git push -u origin master
 
 # Where do I put my code?
 
-Into `main.rb`. Running `rake` will make sure `mruby` is compiled
-properly and then execute `main.rb` with the compiled binary.
+Into `mrblib/main.rb`. Running `rake` will make sure `mruby` is compiled
+properly and then execute `main.rb` with `mruby`.
 
 # How do I add gems?
 
-Add a gem to `build_config.rb`:
+Add a gem to `mrbgem.rake`:
 
 ```ruby
-  conf.gem mgem: 'mruby-sqlite3'
+  spec.add_dependency 'mruby-sqlite', mgem: 'mruby-sqlite3'
 ```
 
 Next time you run `rake` it will recompile `mruby` to include the gem.
@@ -40,3 +40,13 @@ compile and execute .rb files on the fly. This is probalby fine for
 playing around, but not recommended for production applications. One can
 use the `MRUBY_REQUIRE` environment variable so that all the time spent
 loading and compiling the files happens at boot.
+
+# Can I build a single binary to run my application?
+
+Yes!
+
+Just run `rake compile` and you will find a binary in `./bin/`.
+
+The binary compilation is all from <https://github.com/hone/mruby-cli>,
+I just didn't want to have to use docker or anything so I copied and
+modified what I needed.
